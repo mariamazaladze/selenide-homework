@@ -1,5 +1,6 @@
 import com.codeborne.selenide.*;
 import com.codeborne.selenide.impl.SelenideElementListIterator;
+import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,8 +34,9 @@ public class SelenideBasics2Test {
     }
     @Test
     public void booksimg() { open("https://demoqa.com/books");
-        ElementsCollection books = $(".rt-tbody").$$(".rt-tr-group");
-       //mg[src].notempty
+        ElementsCollection books = $(".rt-tbody").$$(".rt-tr-group").filterBy(text( "O'Reilly Media" )).filterBy(text( "JavaScript" ));
+        Assert.assertTrue(books.first().getAttribute("src").length()>0 );
+
     }
 
 
